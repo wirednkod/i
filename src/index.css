@@ -26,6 +26,7 @@ body {
   font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   background: var(--bg);
   color: var(--fg);
+  letter-spacing: -0.01em;
 }
 
 .terminal-bg {
