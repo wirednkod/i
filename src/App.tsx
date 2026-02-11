@@ -514,7 +514,7 @@ export default function App() {
 
         <section id="github" className="mt-16">
           <div>
-            <h2 className="terminal-title text-2xl terminal-text">/ responsitories</h2>
+            <h2 className="terminal-title text-2xl terminal-text">/ repositories</h2>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {repos.map((repo) => (
