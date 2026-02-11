@@ -1,120 +1,121 @@
 import { useEffect, useState } from 'react'
 
 const skills = [
-  'TypeScript',
-  'React',
-  'Node.js',
-  'GraphQL',
-  'Rust',
-  'Polkadot / Substrate',
-  'Java',
-  'PostgreSQL',
-  'Systems Design',
-  'Developer Tooling',
+  'typescript',
+  'react',
+  'node.js',
+  'rust',
+  'postgresql',
+  'systems design',
+  'application design',
+  'graphql',
+  'substrate',
+  'developer tooling',
+  'java',
 ]
 
 const experience = [
   {
-    role: 'Lead Engineer & Curriculum Producer',
-    company: 'Polkadot Blockchain Academy (Remote)',
-    dates: 'Feb 2024 - Jan 2026',
+    role: 'lead engineer & curriculum producer',
+    company: 'polkadot blockchain academy (remote)',
+    dates: 'feb 2024 - jan 2026',
     highlights: [
-      'Designed and evolved the Polkadot Blockchain Academy into the flagship education program.',
-      'Architected and maintained the technical infrastructure across cohorts.',
-      'Built PBA-X, the scalable online learning environment for advanced modules.',
+      'designed and evolved the polkadot blockchain academy into the flagship education program.',
+      'architected and maintained the technical infrastructure across cohorts.',
+      'built pba-x, the scalable online learning environment for advanced modules.',
     ],
   },
   {
-    role: 'Senior Software Engineer',
-    company: 'Parity Technologies (Remote)',
-    dates: 'Feb 2021 - Jan 2024',
+    role: 'senior software engineer',
+    company: 'parity technologies (remote)',
+    dates: 'feb 2021 - jan 2024',
     highlights: [
-      'Contributed to Substrate Connect with Smoldot-based light client integration.',
-      'Improved decentralized dApp connectivity without centralized JSON-RPC reliance.',
-      'Advanced Zombienet testing framework and migration to Rust for performance.',
+      'contributed to substrate connect with smoldot-based light client integration.',
+      'improved decentralized dapp connectivity without centralized json-rpc reliance.',
+      'advanced zombienet testing framework and migration to rust for performance.',
     ],
   },
   {
-    role: 'Software Engineer Team Lead',
-    company: 'Intralot S.A. (Athens, Greece)',
-    dates: 'Oct 2018 - Jan 2021',
+    role: 'software engineer team lead',
+    company: 'intralot s.a. (athens, greece)',
+    dates: 'oct 2018 - jan 2021',
     highlights: [
-      'Led the Trading Tools Backoffice team for Sportsbook platform.',
-      'Stack: React, Node.js, Java, Apollo, GraphQL.',
-      'Grew team from 3 to 5 engineers while delivering production features.',
+      'led the trading tools backoffice team for sportsbook platform.',
+      'stack: react, node.js, java, apollo, graphql.',
+      'grew team from 3 to 5 engineers while delivering production features.',
     ],
   },
   {
-    role: 'Senior Software Engineer',
-    company: 'Intrasoft International (Athens, Greece)',
-    dates: 'Feb 2017 - Oct 2018',
+    role: 'senior software engineer',
+    company: 'intrasoft international (athens, greece)',
+    dates: 'feb 2017 - oct 2018',
     highlights: [
-      'Built sportsbook backoffice with Java, Node.js, Postgres, React, TypeScript, GraphQL.',
-      'Led a team of 3 engineers delivering the final product.',
+      'built sportsbook backoffice with java, node.js, postgres, react, typescript, graphql.',
+      'led a team of 3 engineers delivering the final product.',
     ],
   },
   {
-    role: 'Full Stack Senior Software Engineer',
-    company: 'BDSwiss (Athens, Greece)',
-    dates: 'Aug 2015 - Aug 2016',
+    role: 'full stack senior software engineer',
+    company: 'bdswiss (athens, greece)',
+    dates: 'aug 2015 - aug 2016',
     highlights: [
-      'Owned SPAs from scratch, integrations, and production support.',
-      'Bridged requirements into reliable front-end and back-end systems.',
+      'owned spas from scratch, integrations, and production support.',
+      'bridged requirements into reliable front-end and back-end systems.',
     ],
   },
   {
-    role: 'Software Engineering Senior Analyst',
-    company: 'Accenture (Athens, Greece)',
-    dates: 'Apr 2011 - Jul 2015',
+    role: 'software engineering senior analyst',
+    company: 'accenture (athens, greece)',
+    dates: 'apr 2011 - jul 2015',
     highlights: [
-      'Led integration and modernization of telecom VAS platforms.',
-      'Delivered SOA integration solutions and migration to modern stacks.',
+      'led integration and modernization of telecom vas platforms.',
+      'delivered soa integration solutions and migration to modern stacks.',
     ],
   },
 ]
 
 const projects = [
   {
-    name: 'Substrate Connect',
-    description: 'Light client framework for direct, trusted dApp connectivity.',
-    stack: 'Rust, TypeScript, Smoldot',
+    name: 'substrate connect',
+    description: 'light client framework for direct, trusted dapp connectivity.',
+    stack: 'rust, typescript, smoldot',
   },
   {
-    name: 'Zombienet',
-    description: 'Testing framework for Polkadot/Substrate network orchestration.',
-    stack: 'Rust, TypeScript',
+    name: 'zombienet',
+    description: 'testing framework for polkadot/substrate network orchestration.',
+    stack: 'rust, typescript',
   },
   {
-    name: 'PBA-X',
-    description: 'Scalable online learning platform for advanced Web3 curricula.',
-    stack: 'Web platform, curriculum systems',
+    name: 'pba-x',
+    description: 'scalable online learning platform for advanced web3 curricula.',
+    stack: 'web platform, curriculum systems',
   },
 ]
 
 const education = [
   {
-    program: 'Protocol Track (5-week course)',
-    school: 'Polkadot Blockchain Academy, Buenos Aires, Argentina',
-    date: 'Graduated Feb 2023',
+    program: 'protocol track (5-week course)',
+    school: 'polkadot blockchain academy, buenos aires, argentina',
+    date: 'graduated feb 2023',
   },
   {
-    program: 'M.A. Graphic Arts & Multimedia',
-    school: 'Open University, Patra - Greece',
-    date: 'Graduated Aug 2012',
+    program: 'm.a. graphic arts & multimedia',
+    school: 'open university, patra - greece',
+    date: 'graduated aug 2012',
   },
   {
-    program: 'B.Sc. Applied IT & Multimedia',
-    school: 'Technological Educational Institute, Crete - Greece',
-    date: 'Graduated Jan 2006',
+    program: 'b.sc. applied it & multimedia',
+    school: 'technological educational institute, crete - greece',
+    date: 'graduated jan 2006',
   },
   {
-    program: 'Computer Graphics & Multimedia (Socrates Scheme)',
-    school: 'University of Technology, Brno - Czechia',
+    program: 'computer graphics & multimedia (socrates scheme)',
+    school: 'university of technology, brno - czechia',
     date: '6-month program',
   },
 ]
 
-const languages = ['Greek (Native)', 'English (Professional)', 'German (Elementary)']
+const languages = ['greek (native)', 'english (professional)', 'german (elementary)']
 
 type ThemeMode = 'dark' | 'light'
 
@@ -136,75 +137,80 @@ export default function App() {
     <div className="min-h-screen terminal-bg terminal-text">
       <div className="pointer-events-none fixed inset-0 bg-grain grid-overlay" />
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-16 pt-10">
-        <header className="flex items-center justify-between text-xs uppercase tracking-[0.4em] terminal-muted">
-          <span className="terminal-text">NK</span>
+        <header className="flex items-center justify-between text-xs tracking-[0.1em] terminal-muted">
+          <span className="terminal-text">nk</span>
           <div className="flex items-center gap-6">
             <nav className="hidden items-center gap-6 md:flex">
-              <a className="hover:terminal-text" href="#skills">
-                Skills
+              <a className="terminal-link hover:terminal-text" href="#skills">
+                skills
               </a>
-              <a className="hover:terminal-text" href="#experience">
-                Experience
+              <a className="terminal-link hover:terminal-text" href="#experience">
+                experience
               </a>
-              <a className="hover:terminal-text" href="#github">
-                GitHub
+              <a className="terminal-link hover:terminal-text" href="#github">
+                github
               </a>
-              <a className="hover:terminal-text" href="#contact">
-                Contact
+              <a className="terminal-link hover:terminal-text" href="#contact">
+                contact
               </a>
             </nav>
             <button
               type="button"
               onClick={toggleTheme}
               className="terminal-toggle"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              aria-label={`switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
-              <svg viewBox="0 0 48 36" aria-hidden="true">
-                <rect x="3" y="3" width="42" height="30" rx="3" />
-                <path d="M9 11h14" />
-                <path d="M9 18h8" />
-                <path d="M20 18l5-3-5-3" />
-                <path d="M9 25h22" />
-              </svg>
+              {theme === 'dark' ? (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 4v2" />
+                  <path d="M12 18v2" />
+                  <path d="M4 12h2" />
+                  <path d="M18 12h2" />
+                  <path d="M6.3 6.3l1.4 1.4" />
+                  <path d="M16.3 16.3l1.4 1.4" />
+                  <path d="M6.3 17.7l1.4-1.4" />
+                  <path d="M16.3 7.7l1.4-1.4" />
+                  <circle cx="12" cy="12" r="4" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 14.5A7.5 7.5 0 1 1 9.5 4a6 6 0 1 0 10.5 10.5z" />
+                </svg>
+              )}
             </button>
           </div>
         </header>
 
         <section className="mt-14 flex flex-col gap-10">
-          <div className="terminal-panel shadow-soft p-6">
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ intro</p>
-            <h1 className="mt-4 text-3xl uppercase terminal-text md:text-4xl">
-              Nikolaos Kontakis — Lead Engineer
+          <div className="terminal-panel p-6">
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ intro</p>
+            <h1 className="terminal-title mt-4 text-3xl terminal-text md:text-4xl">
+              nikolaos kontakis
             </h1>
-            <p className="mt-4 max-w-2xl text-sm terminal-muted">
-              I build things that connect ideas to impact. I take a hands-on, end-to-end approach
+            <p className="mt-4 text-sm terminal-muted">
+              i build things that connect ideas to impact. i take a hands-on, end-to-end approach
               from concept and specification to prototyping, implementation, and iteration.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] terminal-muted">
-              <span className="terminal-pill">Athens, Greece · Remote</span>
-              <span className="terminal-pill">Web3 Infrastructure</span>
-              <span className="terminal-pill">Developer Education</span>
+            <div className="mt-6 flex flex-wrap gap-3 text-xs tracking-[0.1em] terminal-muted">
+              <span className="terminal-pill">athens, greece · remote</span>
+              <span className="terminal-pill">web3 infrastructure</span>
+              <span className="terminal-pill">developer education</span>
             </div>
-          </div>
-
-          <div className="terminal-panel p-6">
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ now</p>
-            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm terminal-muted">
-              <span>Building scalable education platforms for Polkadot</span>
-            </div>
-            <div className="mt-4 text-xl terminal-text">Shipping dependable systems for teams</div>
           </div>
         </section>
 
         <section id="skills" className="mt-16">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ skills</p>
-            <h2 className="mt-3 text-2xl terminal-text">Stack I trust</h2>
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ skills</p>
+            <h2 className="terminal-title mt-3 text-2xl terminal-text">stack</h2>
           </div>
           <div className="mt-6 grid gap-3 md:grid-cols-4">
             {skills.map((skill) => (
-              <div key={skill} className="terminal-panel px-4 py-3 text-xs uppercase tracking-[0.3em] terminal-muted">
+              <div
+                key={skill}
+                className="terminal-panel px-4 py-3 text-xs tracking-[0.1em] terminal-muted"
+              >
                 {skill}
               </div>
             ))}
@@ -213,18 +219,16 @@ export default function App() {
 
         <section id="experience" className="mt-16">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ experience</p>
-            <h2 className="mt-3 text-2xl terminal-text">Shipping history</h2>
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ experience</p>
+            <h2 className="terminal-title mt-3 text-2xl terminal-text">shipping history</h2>
           </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-6 grid gap-4">
             {experience.map((role) => (
               <article key={role.role} className="terminal-panel p-5">
                 <div className="flex items-start justify-between gap-6">
                   <div>
-                    <h3 className="text-xl terminal-text">{role.role}</h3>
-                    <p className="mt-1 text-xs uppercase tracking-[0.3em] terminal-muted">
-                      {role.company}
-                    </p>
+                    <h3 className="terminal-title text-xl terminal-text">{role.role}</h3>
+                    <p className="mt-1 text-xs tracking-[0.1em] terminal-muted">{role.company}</p>
                   </div>
                   <span className="terminal-tag">{role.dates}</span>
                 </div>
@@ -243,21 +247,19 @@ export default function App() {
 
         <section id="education" className="mt-16">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ education</p>
-            <h2 className="mt-3 text-2xl terminal-text">Training and degrees</h2>
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ education</p>
+            <h2 className="terminal-title mt-3 text-2xl terminal-text">training and degrees</h2>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {education.map((item) => (
               <div key={item.program} className="terminal-panel p-5">
-                <h3 className="text-base terminal-text">{item.program}</h3>
+                <h3 className="terminal-title text-base terminal-text">{item.program}</h3>
                 <p className="mt-2 text-sm terminal-muted">{item.school}</p>
-                <p className="mt-3 text-[10px] uppercase tracking-[0.3em] terminal-muted">
-                  {item.date}
-                </p>
+                <p className="mt-3 text-[10px] tracking-[0.1em] terminal-muted">{item.date}</p>
               </div>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] terminal-muted">
+          <div className="mt-6 flex flex-wrap gap-3 text-xs tracking-[0.1em] terminal-muted">
             {languages.map((lang) => (
               <span key={lang} className="terminal-pill">
                 {lang}
@@ -268,48 +270,74 @@ export default function App() {
 
         <section id="github" className="mt-16">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ github</p>
-            <h2 className="mt-3 text-2xl terminal-text">Open-source nodes</h2>
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ github</p>
+            <h2 className="terminal-title mt-3 text-2xl terminal-text">open-source nodes</h2>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {projects.map((project) => (
               <div key={project.name} className="terminal-panel p-5">
-                <h3 className="text-lg terminal-text">{project.name}</h3>
+                <h3 className="terminal-title text-lg terminal-text">{project.name}</h3>
                 <p className="mt-2 text-sm terminal-muted">{project.description}</p>
-                <p className="mt-3 text-[10px] uppercase tracking-[0.3em] terminal-muted">
-                  {project.stack}
-                </p>
+                <p className="mt-3 text-[10px] tracking-[0.1em] terminal-muted">{project.stack}</p>
               </div>
             ))}
           </div>
-          <div className="mt-6 text-xs uppercase tracking-[0.4em] terminal-muted">
-            github.com/wirednkod
-          </div>
+          <div className="mt-6 text-xs tracking-[0.1em] terminal-muted">github.com/wirednkod</div>
         </section>
 
         <section id="contact" className="mt-16">
           <div className="terminal-panel p-6">
-            <p className="text-xs uppercase tracking-[0.4em] terminal-muted">/ contact</p>
-            <h2 className="mt-3 text-2xl terminal-text">Let&apos;s build something useful</h2>
-            <p className="mt-3 text-sm terminal-muted">
-              kontakisnikos@gmail.com · linkedin.com/in/nikolaoskontakis
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em]">
-              <a className="terminal-button" href="mailto:kontakisnikos@gmail.com">
-                Email
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ contact</p>
+            <h2 className="terminal-title mt-3 text-2xl terminal-text">
+              let&apos;s build something useful
+            </h2>
+            <div className="mt-5 flex flex-wrap gap-3 text-xs tracking-[0.1em]">
+              <a
+                className="terminal-button terminal-link"
+                href="mailto:wirednkod@proton.me"
+                target="_blank"
+                rel="noreferrer"
+              >
+                mail::nikos
               </a>
-              <a className="terminal-button ghost" href="https://www.linkedin.com/in/nikolaoskontakis/">
-                LinkedIn
+              <a
+                className="terminal-button ghost terminal-link"
+                href="https://www.linkedin.com/in/nikolaoskontakis/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                linkedin::nikolaoskontakis
               </a>
-              <a className="terminal-button ghost" href="https://www.github.com/wirednkod">
-                GitHub
+              <a
+                className="terminal-button ghost terminal-link"
+                href="https://www.github.com/wirednkod"
+                target="_blank"
+                rel="noreferrer"
+              >
+                github::wirednkod
+              </a>
+              <a
+                className="terminal-button ghost terminal-link"
+                href="https://t.me/Wirednkod"
+                target="_blank"
+                rel="noreferrer"
+              >
+                telegram::wirednkod
+              </a>
+              <a
+                className="terminal-button ghost terminal-link"
+                href="https://x.com/wirednkod"
+                target="_blank"
+                rel="noreferrer"
+              >
+                x::wirednkod
               </a>
             </div>
           </div>
         </section>
 
-        <footer className="mt-12 border-t terminal-border py-6 text-[10px] uppercase tracking-[0.4em] terminal-muted">
-          © 2026 Nikolaos Kontakis · React + Vite + Tailwind
+        <footer className="mt-12 border-t terminal-border py-6 text-[10px] tracking-[0.1em] terminal-muted">
+          © 2026 nikolaos kontakis
         </footer>
       </div>
     </div>
