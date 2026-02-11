@@ -123,6 +123,10 @@ body {
   font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 .github-calendar {
   overflow-x: auto;
   display: flex;
