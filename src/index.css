@@ -12,6 +12,12 @@
   --accent: #9dffb3;
 }
 
+:root,
+html {
+  scroll-behavior: smooth;
+  font-size: 90%;
+}
+
 :root[data-theme='light'] {
   color-scheme: light;
   --bg: #ffffff;
@@ -115,6 +121,17 @@ body {
 
 .terminal-link {
   font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.github-calendar {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.github-calendar svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .grid-overlay {

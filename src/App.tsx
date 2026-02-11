@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import GitHubCalendar from 'react-github-calendar'
 
 const skills = [
   'typescript',
@@ -74,23 +75,16 @@ const experience = [
   },
 ]
 
-const projects = [
-  {
-    name: 'substrate connect',
-    description: 'light client framework for direct, trusted dapp connectivity.',
-    stack: 'rust, typescript, smoldot',
-  },
-  {
-    name: 'zombienet',
-    description: 'testing framework for polkadot/substrate network orchestration.',
-    stack: 'rust, typescript',
-  },
-  {
-    name: 'pba-x',
-    description: 'scalable online learning platform for advanced web3 curricula.',
-    stack: 'web platform, curriculum systems',
-  },
-]
+const githubUsername = 'wirednkod'
+
+type GithubRepo = {
+  id: number
+  name: string
+  html_url: string
+  description: string | null
+  language: string | null
+  stargazers_count: number
+}
 
 const education = [
   {
@@ -124,10 +118,41 @@ export default function App() {
     if (typeof window === 'undefined') return 'dark'
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
   })
+  const [repos, setRepos] = useState<GithubRepo[]>([])
+  const [reposError, setReposError] = useState(false)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
   }, [theme])
+
+  useEffect(() => {
+    let isMounted = true
+    const loadRepos = async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${githubUsername}/repos?per_page=100&sort=updated`,
+        )
+        if (!response.ok) {
+          throw new Error('failed to load repos')
+        }
+        const data = (await response.json()) as GithubRepo[]
+        const sorted = [...data].sort((a, b) => b.stargazers_count - a.stargazers_count)
+        if (isMounted) {
+          setRepos(sorted.slice(0, 6))
+        }
+      } catch (error) {
+        if (isMounted) {
+          setReposError(true)
+        }
+      }
+    }
+
+    loadRepos()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
@@ -137,8 +162,8 @@ export default function App() {
     <div className="min-h-screen terminal-bg terminal-text">
       <div className="pointer-events-none fixed inset-0 bg-grain grid-overlay" />
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-16 pt-10">
-        <header className="flex items-center justify-between text-xs tracking-[0.1em] terminal-muted">
-          <span className="terminal-text">nk</span>
+        <header className="flex items-center justify-between text-sm tracking-[0.1em] terminal-muted">
+          <span className="terminal-text text-lg font-semibold">nk</span>
           <div className="flex items-center gap-6">
             <nav className="hidden items-center gap-6 md:flex">
               <a className="terminal-link hover:terminal-text" href="#skills">
@@ -186,7 +211,7 @@ export default function App() {
           <div className="terminal-panel p-6">
             <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ intro</p>
             <h1 className="terminal-title mt-4 text-3xl terminal-text md:text-4xl">
-              nikolaos kontakis
+              nikos kontakis
             </h1>
             <p className="mt-4 text-sm terminal-muted">
               i build things that connect ideas to impact. i take a hands-on, end-to-end approach
@@ -196,6 +221,13 @@ export default function App() {
               <span className="terminal-pill">athens, greece · remote</span>
               <span className="terminal-pill">web3 infrastructure</span>
               <span className="terminal-pill">developer education</span>
+            </div>
+          </div>
+
+          <div className="terminal-panel p-6">
+            <p className="text-sm font-semibold tracking-[0.1em] terminal-muted">/ contributions</p>
+            <div className="mt-4 github-calendar">
+              <GitHubCalendar username={githubUsername} />
             </div>
           </div>
         </section>
@@ -224,7 +256,10 @@ export default function App() {
           </div>
           <div className="mt-6 grid gap-4">
             {experience.map((role) => (
-              <article key={role.role} className="terminal-panel p-5">
+              <article
+                key={`${role.role}-${role.company}-${role.dates}`}
+                className="terminal-panel p-5"
+              >
                 <div className="flex items-start justify-between gap-6">
                   <div>
                     <h3 className="terminal-title text-xl terminal-text">{role.role}</h3>
@@ -274,15 +309,36 @@ export default function App() {
             <h2 className="terminal-title mt-3 text-2xl terminal-text">open-source nodes</h2>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {projects.map((project) => (
-              <div key={project.name} className="terminal-panel p-5">
-                <h3 className="terminal-title text-lg terminal-text">{project.name}</h3>
-                <p className="mt-2 text-sm terminal-muted">{project.description}</p>
-                <p className="mt-3 text-[10px] tracking-[0.1em] terminal-muted">{project.stack}</p>
+            {repos.map((repo) => (
+              <div key={repo.id} className="terminal-panel p-5">
+                <h3 className="terminal-title text-lg terminal-text">{repo.name}</h3>
+                <p className="mt-2 text-sm terminal-muted">
+                  {repo.description ?? 'no description yet'}
+                </p>
+                <p className="mt-3 text-[10px] tracking-[0.1em] terminal-muted">
+                  {(repo.language ?? 'unknown').toLowerCase()} · ★ {repo.stargazers_count}
+                </p>
               </div>
             ))}
           </div>
-          <div className="mt-6 text-xs tracking-[0.1em] terminal-muted">github.com/wirednkod</div>
+          {repos.length === 0 && !reposError ? (
+            <p className="mt-4 text-xs tracking-[0.1em] terminal-muted">
+              loading github repositories...
+            </p>
+          ) : null}
+          {reposError ? (
+            <p className="mt-4 text-xs tracking-[0.1em] terminal-muted">
+              unable to load repositories right now.
+            </p>
+          ) : null}
+          <a
+            className="terminal-link mt-6 inline-flex text-xs tracking-[0.1em] terminal-muted hover:terminal-text"
+            href={`https://github.com/${githubUsername}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            see more..
+          </a>
         </section>
 
         <section id="contact" className="mt-16">
@@ -301,15 +357,7 @@ export default function App() {
                 mail::nikos
               </a>
               <a
-                className="terminal-button ghost terminal-link"
-                href="https://www.linkedin.com/in/nikolaoskontakis/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                linkedin::nikolaoskontakis
-              </a>
-              <a
-                className="terminal-button ghost terminal-link"
+                className="terminal-button terminal-link"
                 href="https://www.github.com/wirednkod"
                 target="_blank"
                 rel="noreferrer"
@@ -317,27 +365,35 @@ export default function App() {
                 github::wirednkod
               </a>
               <a
-                className="terminal-button ghost terminal-link"
-                href="https://t.me/Wirednkod"
-                target="_blank"
-                rel="noreferrer"
-              >
-                telegram::wirednkod
-              </a>
-              <a
-                className="terminal-button ghost terminal-link"
+                className="terminal-button terminal-link"
                 href="https://x.com/wirednkod"
                 target="_blank"
                 rel="noreferrer"
               >
                 x::wirednkod
               </a>
+              <a
+                className="terminal-button terminal-link"
+                href="https://www.linkedin.com/in/nikolaoskontakis/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                linkedin::nikolaoskontakis
+              </a>
+              <a
+                className="terminal-button terminal-link"
+                href="https://t.me/Wirednkod"
+                target="_blank"
+                rel="noreferrer"
+              >
+                telegram::wirednkod
+              </a>
             </div>
           </div>
         </section>
 
         <footer className="mt-12 border-t terminal-border py-6 text-[10px] tracking-[0.1em] terminal-muted">
-          © 2026 nikolaos kontakis
+          © 2026 nikos kontakis
         </footer>
       </div>
     </div>
